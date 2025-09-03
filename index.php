@@ -262,7 +262,7 @@ include("header.php");
         </h3>
         <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
           <div class="accordion-body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <div itemprop="text">Yes! All our data and code are self hosted and available on <a href="https://github.com/nextcloud" target="_blank">GitHub</a>. Pull requests and issues are welcome.</div>
+            <div itemprop="text">Yes! All our data and code are self hosted and available on <a href="https://github.com/nextcloud/Digital-Sovereignty-Index/" target="_blank">GitHub</a>. Pull requests and issues are welcome.</div>
             
           </div>
         </div>
