@@ -210,6 +210,8 @@ include("header.php");
   </div>
 </section>
 
+
+
 <?php include("cta.php"); ?>
 
 
@@ -272,11 +274,13 @@ include("header.php");
     <div class="col-md-2"></div>
   </div>
 
+    
   </div>
 </section>
+
+
 <script type="text/javascript" src="data/statesData.js"></script>
 <script type="text/javascript">
-
 //format population number
 function formatNumberShort(num) {
   if (num >= 1_000_000) {
@@ -292,6 +296,8 @@ function formatNumberShort(num) {
 
 //normalize population number
 function normalize_pop_number(num){
+  //return Math.floor(num/100000);
+  //return (num/100000).toFixed(2);
    return num/100000;
 }
 
@@ -490,6 +496,7 @@ statesData.features.forEach(feature => {
   function addTilesToMap(){
       const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 16,
+        referrerPolicy: 'strict-origin-when-cross-origin',
         attribution: '&copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
       }).addTo(map);
   }
@@ -573,12 +580,15 @@ statesData.features.forEach(feature => {
 
 	function showInfosSpanOnClick(e) {
 		const layer = e.target;
+    //console.log(e.target);
+
     //reset 
     geojson.resetStyle();
     const countryId = layer.feature.properties.iso_a2_eh;
     //reset set 
     selectedCountries.clear();
     selectedCountries.add(countryId);
+    //console.log("New Selected countries:", selectedCountries);
 
     layer.setStyle({
         weight: 3,
@@ -587,6 +597,8 @@ statesData.features.forEach(feature => {
         fillOpacity: 0.7
     });
 
+    //zoomToFeature(e); // This zooms and centers the country
+    
 		layer.bringToFront();
 		info.update(layer.feature.properties);
 	}
@@ -596,6 +608,7 @@ statesData.features.forEach(feature => {
 		const layer = e.target;
     
     const countryId = e.target.feature.properties.iso_a2_eh; // or any unique property
+    //console.log("selectedCountries: "+selectedCountries);
     if (!selectedCountries.has(countryId)) {
         layer.setStyle({
           weight: 3,
